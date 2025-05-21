@@ -9,7 +9,7 @@ export const authRoute = createRoute({
   id: 'auth',
   component: () => {
     const isAuth = useAuthStore((s) => s.isAuthenticated)
-    return isAuth ? <AuthLayout /> : <Navigate to="/login" />
+    return isAuth ? <AuthLayout /> : <Navigate to="/" />
   },
 })
 

@@ -10,7 +10,7 @@ export const AuthLayout = () => {
 
   const handleLogout = () => {
     logout()
-    router.navigate({ to: '/login' })
+    router.navigate({ to: '/' })
   }
 
   return (

@@ -11,6 +11,9 @@ import { authRoute } from './routes/auth'
 import { dashboardRoute } from './routes/dashboard.route'
 import { menuRoute } from './routes/menu.route'
 
+import { Theme } from '@radix-ui/themes'
+import '@radix-ui/themes/styles.css'
+
 import './styles.css'
 
 
@@ -19,9 +22,9 @@ const routeTree = rootRoute.addChildren([
   authRoute.addChildren([
     dashboardRoute,
     menuRoute,
- ])
   ])
-   
+])
+
 const router = createRouter({
   routeTree,
 })
@@ -32,12 +35,14 @@ declare module '@tanstack/react-router' {
   }
 }
 
-const rootElement = document.getElementById('app') 
+const rootElement = document.getElementById('app')
 if (rootElement && !rootElement.innerHTML) {
   const root = ReactDOM.createRoot(rootElement)
   root.render(
     <StrictMode>
-      <RouterProvider router={router} />
+      <Theme accentColor="indigo" grayColor="mauve" radius="large" appearance='dark'>
+        <RouterProvider router={router} />
+      </Theme>
     </StrictMode>,
   )
 }
