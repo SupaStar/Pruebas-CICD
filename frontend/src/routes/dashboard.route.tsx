@@ -1,9 +1,9 @@
 import { createRoute } from '@tanstack/react-router'
-import { rootRoute } from './root.tsx'
+import { authRoute } from './auth'
 import { Dashboard } from '../pages/Dashboard'
 
 export const dashboardRoute = createRoute({
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => authRoute,
   path: '/dashboard',
   component: Dashboard,
 })

@@ -51,3 +51,44 @@ body {
   border-radius: 4px;
   margin-top: 1rem;
 }
+.layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar {
+  width: 200px;
+  background: #1f2937;
+  color: white;
+  padding: 1rem;
+}
+
+.sidebar-title {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar li {
+  margin-bottom: 0.5rem;
+}
+
+.sidebar a,
+.sidebar button {
+  color: white;
+  text-decoration: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.content {
+  flex-grow: 1;
+  padding: 2rem;
+  background: #f9fafb;
+}
+

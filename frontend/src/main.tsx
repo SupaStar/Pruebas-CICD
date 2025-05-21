@@ -7,16 +7,21 @@ import {
 
 import { rootRoute } from './routes/root'
 import { loginRoute } from './routes/login.route'
+import { authRoute } from './routes/auth'
 import { dashboardRoute } from './routes/dashboard.route'
+import { menuRoute } from './routes/menu.route'
 
 import './styles.css'
 
 
 const routeTree = rootRoute.addChildren([
   loginRoute,
-  dashboardRoute,
-])
-
+  authRoute.addChildren([
+    dashboardRoute,
+    menuRoute,
+ ])
+  ])
+   
 const router = createRouter({
   routeTree,
 })

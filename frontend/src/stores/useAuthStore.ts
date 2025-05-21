@@ -10,7 +10,7 @@ interface AuthState {
 export const useAuthStore = create<AuthState>((set) => ({
   user: localStorage.getItem('user'),
   isAuthenticated: !!localStorage.getItem('user'),
-  login: (username) => {
+  login: (username: string) => {
     localStorage.setItem('user', username)
     set({ user: username, isAuthenticated: true })
   },
