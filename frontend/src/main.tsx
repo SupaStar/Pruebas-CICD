@@ -1,0 +1,38 @@
+import { StrictMode } from 'react'
+import ReactDOM from 'react-dom/client'
+import {
+  RouterProvider,
+  createRouter,
+} from '@tanstack/react-router'
+
+import { rootRoute } from './routes/root'
+import { loginRoute } from './routes/login.route'
+import { dashboardRoute } from './routes/dashboard.route'
+
+import './styles.css'
+
+
+const routeTree = rootRoute.addChildren([
+  loginRoute,
+  dashboardRoute,
+])
+
+const router = createRouter({
+  routeTree,
+})
+
+declare module '@tanstack/react-router' {
+  interface Register {
+    router: typeof router
+  }
+}
+
+const rootElement = document.getElementById('app') 
+if (rootElement && !rootElement.innerHTML) {
+  const root = ReactDOM.createRoot(rootElement)
+  root.render(
+    <StrictMode>
+      <RouterProvider router={router} />
+    </StrictMode>,
+  )
+}
