@@ -1,4 +1,4 @@
-import { StrictMode, useState } from 'react'
+import { StrictMode } from 'react'
 import ReactDOM from 'react-dom/client'
 import { RouterProvider, createRouter } from '@tanstack/react-router'
 
@@ -10,8 +10,6 @@ import { dashboardRoute } from './routes/dashboard.route'
 import { menuRoute } from './routes/menu.route'
 
 import '@radix-ui/themes/styles.css'
-
-import { useAuthStore } from './stores/useAuthStore'
 
 const routeTree = rootRoute.addChildren([
   loginRoute,

@@ -10,7 +10,6 @@ import {
   Flex,
   Heading,
   IconButton,
-  Link,
   Select,
   Separator,
   Skeleton,
@@ -35,8 +34,6 @@ import { Utils } from '@/components/Utils/Utils'
 
 export const Dashboard = () => {
   const user = useAuthStore((s) => s.user)
-  const logout = useAuthStore((s) => s.logout)
-  const router = useRouter()
 
   const [products, setProducts] = useState<Array<Product>>([])
   const [filteredProducts, setFilteredProducts] = useState<Array<Product>>([])
@@ -58,7 +55,7 @@ export const Dashboard = () => {
 
   const Footer = () => (
     <Box
-      as="footer"
+      as="div"
       mt="2"
       pt="3"
       px="4"
@@ -101,11 +98,6 @@ export const Dashboard = () => {
     setSearch('')
     calculatePagesAndData()
   }, [products, productsPerPage, page])
-
-  const handleLogout = () => {
-    logout()
-    router.navigate({ to: '/' })
-  }
 
   const handleViewProduct = useCallback((id: number) => {
     setSelectedProductId(id)
@@ -208,7 +200,7 @@ export const Dashboard = () => {
               style={{ border: '2px solid #4a5568' }}
             />
             <Box>
-              <Heading size="25">Hola, {user} 👋</Heading>
+              <Heading>Hola, {user} 👋</Heading>
               <Text size="2">Bienvenido al panel de administración</Text>
             </Box>
           </Flex>

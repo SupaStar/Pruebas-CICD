@@ -1,4 +1,4 @@
-import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest' // ajusta la ruta si es distinta
+import { beforeEach, describe, expect, test, vi } from 'vitest' // ajusta la ruta si es distinta
 import { axiosInstance } from '@/api/config/axios'
 import { ENDPOINTS } from '@/api/config/endpoints'
 import { Product } from '@/api/models/Products/Product'
@@ -164,7 +164,7 @@ describe('Product services', () => {
       newProduct,
     )
     expect(created).toBeInstanceOf(Product)
-    expect(created.name).toBe(rawProduct.name)
+    expect(created.title).toBe(rawProduct.title)
     expect(created.price).toBe(rawProduct.price)
   })
 })

@@ -39,7 +39,7 @@ export const Login = () => {
       alert('Por favor, completa todos los campos.')
       return
     }
-    // setIsLoading(true);
+    setIsLoading(true);
     // LoginService(username, password).then((response) => {
     //   loginApi(username, response.token);
     //   router.navigate({ to: "/dashboard" })
@@ -89,8 +89,11 @@ export const Login = () => {
               onChange={(e) => setUsername(e.target.value)}
               size="3"
               required
-              icon={<PersonIcon />}
-            />
+            >
+              <TextField.Slot>
+                <PersonIcon />
+              </TextField.Slot>
+            </TextField.Root>
 
             <TextField.Root
               placeholder="Contraseña"
@@ -99,8 +102,12 @@ export const Login = () => {
               onChange={(e) => setPassword(e.target.value)}
               size="3"
               required
-              icon={<LockClosedIcon />}
-            />
+            >
+              <TextField.Slot>
+                <LockClosedIcon />
+              </TextField.Slot>
+            </TextField.Root>
+
 
             <Button type="submit" size="3" loading={isLoading} highContrast>
               Ingresar
