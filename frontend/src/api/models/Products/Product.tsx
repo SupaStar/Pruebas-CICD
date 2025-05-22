@@ -1,4 +1,3 @@
-// src/models/Product.ts
 export class Product {
     id: number;
     title: string;

@@ -1,15 +1,19 @@
 import { useEffect, useState } from "react"
 import { useAuthStore } from "../stores/useAuthStore"
 import { useRouter } from "@tanstack/react-router"
-import "../styles.css"
-import { Button, Card, Flex, Heading, TextField, Text } from "@radix-ui/themes"
+import { Button, Card, Flex, Heading, TextField, Text, Separator } from "@radix-ui/themes"
+import { LockClosedIcon, PersonIcon } from "@radix-ui/react-icons"
+import { LoginService } from "@/api/services/authService"
+
 
 export const Login = () => {
-  const [username, setUsername] = useState("")
-  const [password, setPassword] = useState("")
   const login = useAuthStore((s) => s.login)
+  const loginApi = useAuthStore((s) => s.loginApi)
   const { isAuthenticated } = useAuthStore()
   const router = useRouter()
+
+  const [username, setUsername] = useState("")
+  const [password, setPassword] = useState("")
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
@@ -22,12 +26,18 @@ export const Login = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // Validate the username and password
+
     if (username === "" || password === "") {
       alert("Por favor, completa todos los campos.")
       return
     }
-    setIsLoading(true);
+    // setIsLoading(true);
+    // LoginService(username, password).then((response) => {
+    //   loginApi(username, response.token);
+    //   router.navigate({ to: "/dashboard" })
+    // }).finally(() => {
+    //   setIsLoading(false);
+    // })
     await delay(2000);
     if (login(username, password)) {
       router.navigate({ to: "/dashboard" })
@@ -38,26 +48,52 @@ export const Login = () => {
   }
 
   return (
-    <Flex align="center" justify="center" height="100vh" bg="gray1" px="4">
-      <Card size="3" style={{ maxWidth: 400, width: '100%' }}>
+    <Flex
+      align="center"
+      justify="center"
+      height="100vh"
+      px="4"
+      style={{ backgroundColor: "#f5f5f5" }}
+    >
+      <Card
+        size="3"
+        style={{
+          maxWidth: 400,
+          width: "100%",
+          boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
+          borderRadius: "12px",
+        }}
+      >
         <form onSubmit={handleSubmit}>
           <Flex direction="column" gap="4">
-            <Heading align="center" size="5">Iniciar sesión</Heading>
-            <Text color="gray" align="center">Accede a tu cuenta</Text>
+            <Heading align="center" size="5">
+              Iniciar sesión
+            </Heading>
+            <Text align="center" color="gray">
+              Accede a tu cuenta
+            </Text>
 
-            <TextField.Root placeholder="Usuario"
-              type="text"
+            <Separator my="2" size="4" />
+
+            <TextField.Root
+              placeholder="Usuario"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-              required>
-            </TextField.Root>
+              size="3"
+              required
+              icon={<PersonIcon />}
+            />
 
-            <TextField.Root placeholder="Contraseña"
+            <TextField.Root
+              placeholder="Contraseña"
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              required>
-            </TextField.Root>
+              size="3"
+              required
+              icon={<LockClosedIcon />}
+            />
+
 
             <Button type="submit" size="3" loading={isLoading} highContrast>
               Ingresar

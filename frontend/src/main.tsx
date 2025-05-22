@@ -1,4 +1,4 @@
-import { StrictMode } from 'react'
+import { StrictMode, useState } from 'react'
 import ReactDOM from 'react-dom/client'
 import {
   RouterProvider,
@@ -14,7 +14,7 @@ import { menuRoute } from './routes/menu.route'
 import { Theme } from '@radix-ui/themes'
 import '@radix-ui/themes/styles.css'
 
-import './styles.css'
+import { useAuthStore } from './stores/useAuthStore'
 
 
 const routeTree = rootRoute.addChildren([
@@ -29,6 +29,7 @@ const router = createRouter({
   routeTree,
 })
 
+
 declare module '@tanstack/react-router' {
   interface Register {
     router: typeof router
@@ -40,7 +41,7 @@ if (rootElement && !rootElement.innerHTML) {
   const root = ReactDOM.createRoot(rootElement)
   root.render(
     <StrictMode>
-      <Theme accentColor="indigo" grayColor="mauve" radius="large" appearance='dark'>
+      <Theme accentColor="indigo" grayColor="mauve" radius="large" appearance="light">
         <RouterProvider router={router} />
       </Theme>
     </StrictMode>,

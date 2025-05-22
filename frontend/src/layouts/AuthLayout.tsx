@@ -1,10 +1,22 @@
 import { Outlet } from '@tanstack/react-router'
 import { useAuthStore } from '../stores/useAuthStore'
 import { useRouter } from '@tanstack/react-router'
-import '../styles.css'
+import {
+  Box,
+  Flex,
+  Text,
+  Button,
+  Separator,
+  Link,
+} from '@radix-ui/themes'
+import { useState } from 'react'
 
 export const AuthLayout = () => {
   const user = useAuthStore((s) => s.user)
+  const [darkMode, setDarkMode] = useState<Boolean>(
+    useAuthStore((s) => s.isDarkMode)
+  )
+  const changeTheme = useAuthStore((s) => s.changeTheme)
   const logout = useAuthStore((s) => s.logout)
   const router = useRouter()
 
@@ -13,19 +25,62 @@ export const AuthLayout = () => {
     router.navigate({ to: '/' })
   }
 
+  const handleChangeTheme = () => {
+    changeTheme()
+    setDarkMode(!darkMode)
+  }
+
   return (
-    <div className="layout">
-      <aside className="sidebar">
-        <h2 className="sidebar-title">Menú</h2>
-        <ul>
-          <li><a href="/dashboard">Dashboard</a></li>
-          <li><a href="/menu"> Opciones  </a></li>
-          <li><button onClick={handleLogout}>Cerrar sesión</button></li>
-        </ul>
-      </aside>
-      <main className="content">
+    <Flex style={{ minHeight: '100vh' }}>
+      <Box
+        width="250px"
+        p="4"
+        style={{
+          backgroundColor: '#456baf ',
+          color: 'white',
+          display: 'flex',
+          borderRadius: '13px',
+          flexDirection: 'column',
+          justifyContent: 'space-between',
+        }}
+      >
+        <Box>
+          <Flex direction="column" gap="6" align="center">
+          <Text weight="bold" size="5" mb="7">
+            Menú
+          </Text>
+          </Flex>
+          <Flex direction="column" gap="6">
+            <Link href="/dashboard" underline="hover" style={{ color: 'white' }}>
+              Productos
+            </Link>
+          </Flex>
+        </Box>
+
+        <Box mt="7">
+          <Separator size="4" />
+          <Text size="2" mt="6" mb="3">
+            Sesión activa como :  
+          </Text>
+          <Text weight="bold" size="3" mt="6"mb="3" >{user}</Text>
+          <Button
+            onClick={handleLogout}
+            variant="solid"
+            color="red"
+            mt="4"
+            style={{ width: '100%' }}
+          >
+            Cerrar sesión
+          </Button>
+        </Box>
+      </Box>
+
+      {/* Main content */}
+      <Box flexGrow="1" p="4">
         <Outlet />
-      </main>
-    </div>
+      </Box>
+    </Flex>
   )
 }
+export default AuthLayout
+
