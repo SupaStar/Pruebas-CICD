@@ -1,4 +1,4 @@
-import { Navigate, createRoute  } from '@tanstack/react-router'
+import { Navigate, createRoute } from '@tanstack/react-router'
 import { AuthLayout } from '../layouts/AuthLayout'
 import { useAuthStore } from '../stores/useAuthStore'
 import { rootRoute } from './root'

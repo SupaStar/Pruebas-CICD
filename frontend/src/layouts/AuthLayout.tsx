@@ -1,25 +1,15 @@
-import { Outlet, useRouter  } from '@tanstack/react-router'
+import { Outlet, useRouter } from '@tanstack/react-router'
 import { Box, Button, Flex, Link, Separator, Text } from '@radix-ui/themes'
-import { useState } from 'react'
 import { useAuthStore } from '../stores/useAuthStore'
 
 export const AuthLayout = () => {
   const user = useAuthStore((s) => s.user)
-  const [darkMode, setDarkMode] = useState<boolean>(
-    useAuthStore((s) => s.isDarkMode),
-  )
-  const changeTheme = useAuthStore((s) => s.changeTheme)
   const logout = useAuthStore((s) => s.logout)
   const router = useRouter()
 
   const handleLogout = () => {
     logout()
     router.navigate({ to: '/' })
-  }
-
-  const handleChangeTheme = () => {
-    changeTheme()
-    setDarkMode(!darkMode)
   }
 
   return (

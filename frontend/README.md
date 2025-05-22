@@ -6,7 +6,7 @@ Para ejecutar esta aplicación:
 
 ```bash
 npm install
-npm run start  
+npm run start
 ```
 
 # Construcción para Producción

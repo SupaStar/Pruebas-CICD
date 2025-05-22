@@ -34,7 +34,7 @@ export const ProductAddModal = ({ open, onClose }: ProductEditModalProps) => {
     setProduct(updatedProduct)
   }
 
-  const handleAdd = async (e: React.FormEvent) => {
+  const handleAdd = (e: React.FormEvent) => {
     e.preventDefault()
     setIsLoading(true)
     addProduct(product)
