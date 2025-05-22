@@ -9,6 +9,16 @@ npm install
 npm run start
 ```
 
+El usuario para usar el sistema es
+
+```
+Username: admin
+Password: admin
+O
+Username: user
+Password: user
+```
+
 # Construcción para Producción
 
 Para compilar esta aplicación para producción::
