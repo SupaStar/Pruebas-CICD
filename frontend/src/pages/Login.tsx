@@ -1,10 +1,17 @@
-import { useEffect, useState } from "react"
-import { useAuthStore } from "../stores/useAuthStore"
-import { useRouter } from "@tanstack/react-router"
-import { Button, Card, Flex, Heading, TextField, Text, Separator } from "@radix-ui/themes"
-import { LockClosedIcon, PersonIcon } from "@radix-ui/react-icons"
-import { LoginService } from "@/api/services/authService"
-
+import { useEffect, useState } from 'react'
+import { useRouter } from '@tanstack/react-router'
+import {
+  Button,
+  Card,
+  Flex,
+  Heading,
+  Separator,
+  Text,
+  TextField,
+} from '@radix-ui/themes'
+import { LockClosedIcon, PersonIcon } from '@radix-ui/react-icons'
+import { useAuthStore } from '../stores/useAuthStore'
+import { LoginService } from '@/api/services/authService'
 
 export const Login = () => {
   const login = useAuthStore((s) => s.login)
@@ -12,23 +19,24 @@ export const Login = () => {
   const { isAuthenticated } = useAuthStore()
   const router = useRouter()
 
-  const [username, setUsername] = useState("")
-  const [password, setPassword] = useState("")
-  const [isLoading, setIsLoading] = useState(false);
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
+  const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
     if (isAuthenticated) {
-      router.navigate({ to: "/dashboard" })
+      router.navigate({ to: '/dashboard' })
     }
-  }, [router]);
+  }, [router])
 
-  const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms))
+  const delay = (ms: number) =>
+    new Promise((resolve) => setTimeout(resolve, ms))
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
 
-    if (username === "" || password === "") {
-      alert("Por favor, completa todos los campos.")
+    if (username === '' || password === '') {
+      alert('Por favor, completa todos los campos.')
       return
     }
     // setIsLoading(true);
@@ -38,13 +46,13 @@ export const Login = () => {
     // }).finally(() => {
     //   setIsLoading(false);
     // })
-    await delay(2000);
+    await delay(2000)
     if (login(username, password)) {
-      router.navigate({ to: "/dashboard" })
+      router.navigate({ to: '/dashboard' })
     } else {
-      alert("Usuario o contraseña incorrectos.")
+      alert('Usuario o contraseña incorrectos.')
     }
-    setIsLoading(false);
+    setIsLoading(false)
   }
 
   return (
@@ -53,15 +61,15 @@ export const Login = () => {
       justify="center"
       height="100vh"
       px="4"
-      style={{ backgroundColor: "#f5f5f5" }}
+      style={{ backgroundColor: '#f5f5f5' }}
     >
       <Card
         size="3"
         style={{
           maxWidth: 400,
-          width: "100%",
-          boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
-          borderRadius: "12px",
+          width: '100%',
+          boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+          borderRadius: '12px',
         }}
       >
         <form onSubmit={handleSubmit}>
@@ -93,7 +101,6 @@ export const Login = () => {
               required
               icon={<LockClosedIcon />}
             />
-
 
             <Button type="submit" size="3" loading={isLoading} highContrast>
               Ingresar

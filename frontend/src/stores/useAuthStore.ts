@@ -12,20 +12,22 @@ export const useAuthStore = create<AuthState>((set) => ({
   user: localStorage.getItem('user'),
   isAuthenticated: !!localStorage.getItem('user'),
   login: (username: string, password: string) => {
-    const users = JSON.parse(localStorage.getItem('users') || '[]');
+    const users = JSON.parse(localStorage.getItem('users') || '[]')
     if (users.length === 0) {
       addFirstUser()
     }
-    const userToLogin = users.find((user: { username: string }) => user.username === username);
+    const userToLogin = users.find(
+      (user: { username: string }) => user.username === username,
+    )
     if (!userToLogin) {
-      return false;
+      return false
     }
     if (userToLogin.password !== password) {
-      return false;
+      return false
     }
     localStorage.setItem('user', username)
     set({ user: username, isAuthenticated: true })
-    return true;
+    return true
   },
   loginApi: (username, token) => {
     localStorage.setItem('user', username)

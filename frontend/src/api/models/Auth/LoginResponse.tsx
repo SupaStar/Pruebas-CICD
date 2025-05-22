@@ -1,7 +1,7 @@
 export class LoginResponse {
-    token: string
+  token: string
 
-    constructor(data: any) {
-        this.token = data.token;
-    }
+  constructor(data: any) {
+    this.token = data.token
+  }
 }

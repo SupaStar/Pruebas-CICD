@@ -1,8 +1,7 @@
-import { createRoute } from '@tanstack/react-router'
-import { rootRoute } from './root'
+import { Navigate, createRoute  } from '@tanstack/react-router'
 import { AuthLayout } from '../layouts/AuthLayout'
 import { useAuthStore } from '../stores/useAuthStore'
-import { Navigate } from '@tanstack/react-router'
+import { rootRoute } from './root'
 
 export const authRoute = createRoute({
   getParentRoute: () => rootRoute,
@@ -12,4 +11,3 @@ export const authRoute = createRoute({
     return isAuth ? <AuthLayout /> : <Navigate to="/" />
   },
 })
-
