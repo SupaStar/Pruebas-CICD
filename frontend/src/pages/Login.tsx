@@ -11,11 +11,11 @@ import {
 } from '@radix-ui/themes'
 import { LockClosedIcon, PersonIcon } from '@radix-ui/react-icons'
 import { useAuthStore } from '../stores/useAuthStore'
-import { LoginService } from '@/api/services/authService'
+//import { LoginService } from '@/api/services/authService'
 
 export const Login = () => {
   const login = useAuthStore((s) => s.login)
-  const loginApi = useAuthStore((s) => s.loginApi)
+  //const loginApi = useAuthStore((s) => s.loginApi)
   const { isAuthenticated } = useAuthStore()
   const router = useRouter()
 

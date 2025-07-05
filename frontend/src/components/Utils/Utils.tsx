@@ -1,33 +1,14 @@
+export type BadgeColor =
+  | "ruby" | "blue" | "brown" | "crimson" | "cyan" | "gold" | "gray"
+  | "green" | "indigo" | "lime" | "orange" | "pink" | "plum" | "purple"
+  | "red" | "teal" | "tomato" | "violet" | "yellow";
 export const Utils = {
-  getRandomColor() {
-    const colors = [
-      'Gray',
-      'Gold',
-      'Bronze',
-      'Brown',
-      'Yellow',
-      'Amber',
-      'Orange',
-      'Tomato',
-      'Red',
-      'Ruby',
-      'Crimson',
-      'Pink',
-      'Plum',
-      'Purple',
-      'Violet',
-      'Iris',
-      'Indigo',
-      'Blue',
-      'Cyan',
-      'Teal',
-      'Jade',
-      'Green',
-      'Grass',
-      'Lime',
-      'Mint',
-      'Sky',
-    ]
-    return colors[Math.floor(Math.random() * colors.length)].toLowerCase()
+  getRandomColor():BadgeColor {
+   const validColors: BadgeColor[] = [
+      "gray", "gold", "brown", "yellow", "orange", "tomato", "red", "ruby",
+      "crimson", "pink", "plum", "purple", "violet", "indigo", "blue", "cyan",
+      "teal", "green", "lime"
+    ];
+    return validColors[Math.floor(Math.random() * validColors.length)]
   },
 }
