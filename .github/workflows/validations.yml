@@ -7,7 +7,7 @@ on:
     branches: [ main ]
 
 jobs:
-  test:
+  install:
     runs-on: ubuntu-latest
 
     steps:
@@ -23,7 +23,20 @@ jobs:
         run: npm install
         working-directory: frontend
 
-      - name: Run tests
-        run: npm test
-        working-directory: frontend
+  tests:
+    needs: install
+    runs-on: ubuntu-latest
 
+    steps: 
+        - name: Run tests
+          run: npm test
+          working-directory: frontend
+
+  lint:
+    needs: tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Run linter
+        run: npm run lint
+        working-directory: frontend
