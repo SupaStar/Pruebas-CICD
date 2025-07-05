@@ -9,7 +9,7 @@
     "serve": "vite preview",
     "test": "vitest run",
     "lint": "eslint --fix",
-    "format": "prettier --write",
+    "format": "prettier --check '**/*.{js,jsx,ts,tsx,json,css,md}'",
     "check": "prettier --write . && eslint --fix"
   },
   "dependencies": {
