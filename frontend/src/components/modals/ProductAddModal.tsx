@@ -38,11 +38,10 @@ export const ProductAddModal = ({ open, onClose }: ProductEditModalProps) => {
     setIsLoading(true)
     addProduct(product)
       .then((response) => {
-        if (response.id != null) {
-          onClose(response)
-        } else {
-          setIsError(true)
-        }
+        onClose(response)
+      })
+      .catch((error) => {
+        setIsError(true)
       })
       .finally(() => {
         setIsLoading(false)
