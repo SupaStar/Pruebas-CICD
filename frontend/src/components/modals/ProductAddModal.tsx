@@ -41,6 +41,7 @@ export const ProductAddModal = ({ open, onClose }: ProductEditModalProps) => {
         onClose(response)
       })
       .catch((error) => {
+        console.error('Error al agregar producto:', error)
         setIsError(true)
       })
       .finally(() => {
