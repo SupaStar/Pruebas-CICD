@@ -39,7 +39,7 @@ export const Login = () => {
       alert('Por favor, completa todos los campos.')
       return
     }
-    setIsLoading(true);
+    setIsLoading(true)
     // LoginService(username, password).then((response) => {
     //   loginApi(username, response.token);
     //   router.navigate({ to: "/dashboard" })
@@ -107,7 +107,6 @@ export const Login = () => {
                 <LockClosedIcon />
               </TextField.Slot>
             </TextField.Root>
-
 
             <Button type="submit" size="3" loading={isLoading} highContrast>
               Ingresar
