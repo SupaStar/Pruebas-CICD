@@ -19,6 +19,14 @@ jobs:
         with:
           node-version: 20
 
+      - name: Cache node modules
+        uses: actions/cache@v3
+        with:
+          path: frontend/node_modules
+          key: ${{ runner.os }}-node-modules-${{ hashFiles('frontend/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-modules-
+
       - name: Install dependencies
         run: npm install
         working-directory: frontend
@@ -40,6 +48,14 @@ jobs:
           with:
             node-version: 20
 
+        - name: Cache node modules
+          uses: actions/cache@v3
+          with:
+            path: frontend/node_modules
+            key: ${{ runner.os }}-node-modules-${{ hashFiles('frontend/package-lock.json') }}
+            restore-keys: |
+              ${{ runner.os }}-node-modules-
+
         - name: Install dependencies
           run: npm install
           working-directory: frontend
@@ -60,6 +76,14 @@ jobs:
           uses: actions/setup-node@v4
           with:
             node-version: 20
+
+        - name: Cache node modules
+          uses: actions/cache@v3
+          with:
+            path: frontend/node_modules
+            key: ${{ runner.os }}-node-modules-${{ hashFiles('frontend/package-lock.json') }}
+            restore-keys: |
+              ${{ runner.os }}-node-modules-
 
         - name: Install dependencies
           run: npm install
