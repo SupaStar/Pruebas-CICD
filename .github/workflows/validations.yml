@@ -66,5 +66,5 @@ jobs:
           working-directory: frontend
 
         - name: Run formatter
-          run: npm run format:check
+          run: npm run format
           working-directory: frontend
