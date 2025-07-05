@@ -7,7 +7,7 @@ on:
     branches: [ main ]
 
 jobs:
-  install:
+  tests:
     runs-on: ubuntu-latest
 
     steps:
@@ -23,22 +23,9 @@ jobs:
         run: npm install
         working-directory: frontend
 
-  tests:
-    needs: install
-    runs-on: ubuntu-latest
-
-    steps: 
-        - name: Run tests
-          uses: actions/checkout@v4
-
-        - name: Set up Node.js
-          uses: actions/setup-node@v4
-          with:
-            node-version: 20
-
-        - name: Execute tests
-          run: npm test
-          working-directory: frontend
+      - name: Execute tests
+        run: npm test
+        working-directory: frontend
 
   lint:
     needs: tests
@@ -53,6 +40,10 @@ jobs:
           with:
             node-version: 20
             
+        - name: Install dependencies
+          run: npm install
+          working-directory: frontend
+
         - name: Run linter
           run: npm run lint
           working-directory: frontend
